@@ -5,7 +5,6 @@ import 'package:chat_firebase_miner/utils/helper/fireauth_helper.dart';
 import 'package:chat_firebase_miner/utils/helper/firedb_helper.dart';
 import 'package:chat_firebase_miner/utils/helper/share_helper.dart';
 import 'package:chat_firebase_miner/utils/text_theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -41,48 +40,38 @@ class _SettingScreenState extends State<SettingScreen> {
                 height: MediaQuery.sizeOf(context).height * 0.28,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [Colors.white24,Colors.black12,]),
+                    color: Colors.white12,
                     borderRadius: BorderRadius.circular(20)),
-                child: StreamBuilder(
-                  stream: FireDbHelper.fireDbHelper.getProfileData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
-                    } else if (snapshot.hasData) {
-                      DocumentSnapshot ds = snapshot.data!;
-                      Map m1 = ds.data() as Map;
-                      return Column(
-                        children: [
-                          m1['image'] == null
-                              ? CircleAvatar(
-                                  radius: 50,
-                                  child: Text(
-                                      m1['name'].toUpperCase().substring(0, 1)),
-                                )
-                              : CircleAvatar(
-                                  radius: 50,
-                                  backgroundImage:
-                                      NetworkImage("${m1['image']}"),
-                                ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "${m1['name']}",
-                            style: txtBold18,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "${m1['mobile']}",
-                            style: txtMedium14,
-                          ),
-                        ],
-                      );
-                    }
-                    return const CircularProgressIndicator();
-                  },
+                child:  Column(
+                  children: [
+                    FireDbHelper.fireDbHelper.myProfileData.image== null
+                        ? CircleAvatar(
+                      radius: 50,
+                      child: Text(
+                          "${FireDbHelper.fireDbHelper.myProfileData.name}"
+                                    .toUpperCase().substring(0, 1)),
+
+                    )
+                        : CircleAvatar(
+                      radius: 50,
+                      backgroundImage:
+                      NetworkImage("${FireDbHelper.fireDbHelper.myProfileData.image}"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "${FireDbHelper.fireDbHelper.myProfileData.name}",
+                      style: txtBold18,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "${FireDbHelper.fireDbHelper.myProfileData.mobile}",
+                      style: txtMedium14,
+                    ),
+                  ],
                 ),
               ),
               ListTile(
@@ -104,6 +93,19 @@ class _SettingScreenState extends State<SettingScreen> {
                 leading: Icon(Icons.logout),
                 title: Text(
                   LogOut,
+                  style: txt20,
+                ),
+                trailing: Icon(Icons.navigate_next),
+              ),
+              ListTile(
+                onTap: () async {
+                  await FireDbHelper.fireDbHelper.userDelete(FireAuthHelper.fireAuthHelper.user!.uid);
+                  await FireAuthHelper.fireAuthHelper.userAccountDelete();
+                  Get.offAllNamed('signIn');
+                },
+                leading: Icon(Icons.delete),
+                title: Text(
+                  delete,
                   style: txt20,
                 ),
                 trailing: Icon(Icons.navigate_next),

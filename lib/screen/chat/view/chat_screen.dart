@@ -169,8 +169,6 @@ class _ChatScreenState extends State<ChatScreen> {
                           controller: txtMsg,
                           textAlignVertical: TextAlignVertical.top,
                           decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -178,7 +176,6 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ),
                       IconButton.filled(
-                        focusColor: Colors.red,
                         onPressed: () {
                           ChatModel model = ChatModel(
                             id: FireAuthHelper.fireAuthHelper.user!.uid,

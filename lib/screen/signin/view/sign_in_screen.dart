@@ -82,7 +82,12 @@ class _SignInScreenState extends State<SignInScreen> {
                             }
                           },
                           child: socialContainer("assets/img/google.png")),
-                      socialContainer("assets/img/apple-logo.png"),
+                      InkWell(
+                        onTap: () {
+                          FireAuthHelper.fireAuthHelper.guestLogin();
+                          Get.offAllNamed('profile');
+                        },
+                          child: socialContainer("assets/img/apple-logo.png")),
                       socialContainer("assets/img/facebook.png"),
                     ],
                   ),

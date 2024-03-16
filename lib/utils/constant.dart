@@ -15,3 +15,4 @@ const String LogOut="LogOut";
 const String profile="Profile";
 const String contact="Contact";
 const String theme="Theme";
+const String delete="Delete Account";

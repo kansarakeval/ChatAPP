@@ -29,6 +29,7 @@
 //   }
 // }
 
+import 'package:chat_firebase_miner/utils/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -46,13 +47,10 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         prefixIcon: iconData != null ? Icon(iconData): null,
-        fillColor: Colors.grey.shade300,
-        filled: true,
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
         labelText: label ?? "",
         labelStyle: TextStyle(
-          color: labelColor ?? Colors.black,
+          color: labelColor ?? blue,
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       ),

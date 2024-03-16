@@ -63,7 +63,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    gradient: LinearGradient(colors: [Colors.white24,Colors.black12,]),
+                    color: Colors.white12
                   ),
                   child: ListTile(
                     onTap: () {
@@ -78,8 +78,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         : CircleAvatar(
                             radius: 30,
                             child: Text(
-                              "${contactData[index].name!.substring(0, 1)}",
-                              style: const TextStyle(color: Colors.black87),
+                              "${contactData[index].name!.toUpperCase().substring(0, 1)}",
                             ),
                           ),
                     title: Text(

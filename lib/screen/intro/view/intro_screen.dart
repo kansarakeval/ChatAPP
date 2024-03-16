@@ -1,5 +1,7 @@
+import 'package:chat_firebase_miner/utils/color.dart';
 import 'package:chat_firebase_miner/utils/helper/share_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -36,10 +38,13 @@ class _IntroScreenState extends State<IntroScreen> {
           onDone: (){
             ShareHelper shr = ShareHelper();
             shr.setIntroStatus();
-            Navigator.pushReplacementNamed(context, 'contact');
+            Get.offAllNamed('signIn');
           },
-          done: Text("Done"),
-          next: Text("Next"),
+          done: const Text("Done",style: TextStyle(color: Colors.white),),
+          next: Text("Next",style: TextStyle(color: blue,fontSize: 18),),
+          skip: Text("skip",style: TextStyle(color: blue,fontSize: 18),),
+          showSkipButton: true,
+          doneStyle: ButtonStyle(backgroundColor: MaterialStateProperty.all(blue)),
         ),
       ),
     );
