@@ -1,7 +1,8 @@
-import 'package:chat_firebase_miner/screen/widget/custom_text_field.dart';
 import 'package:chat_firebase_miner/utils/color.dart';
 import 'package:chat_firebase_miner/utils/constant.dart';
+import 'package:chat_firebase_miner/utils/helper/fireauth_helper.dart';
 import 'package:chat_firebase_miner/utils/text_theme.dart';
+import 'package:chat_firebase_miner/utils/widget/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,12 +44,16 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   CustomTextField(
                     label: email,
+                    controller: txtEmail,
+                    iconData: Icons.person_outline,
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   CustomTextField(
                     label: password,
+                    controller: txtPassword,
+                    iconData: Icons.password,
                   ),
                   const SizedBox(
                     height: 15,
@@ -65,7 +72,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-                          onTap: () {},
+                          onTap: () async {
+                            String msg=await FireAuthHelper.fireAuthHelper.googleSignIn();
+                            Get.snackbar(msg, "Login success fully");
+                            if(msg=="success")
+                            {
+                              FireAuthHelper.fireAuthHelper.checkUser();
+                              Get.offAllNamed('profile');
+                            }
+                          },
                           child: socialContainer("assets/img/google.png")),
                       socialContainer("assets/img/apple-logo.png"),
                       socialContainer("assets/img/facebook.png"),
@@ -75,7 +90,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      String msg = await FireAuthHelper.fireAuthHelper.singIn(
+                          email: txtEmail.text, password: txtPassword.text);
+                      Get.snackbar(msg, "");
+                      if (msg == "success") {
+                        FireAuthHelper.fireAuthHelper.checkUser();
+                        Get.offAllNamed('profile');
+                      }
+                    },
                     child: Container(
                       height: 48,
                       width: double.infinity,
@@ -83,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         color: blue,
                         borderRadius: BorderRadius.circular(50)
                       ),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                         loginbutton,
                         style: TextStyle(color: Colors.white),

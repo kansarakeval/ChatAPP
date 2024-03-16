@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:chat_firebase_miner/utils/helper/fireauth_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -14,9 +15,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
+    bool isLogin = FireAuthHelper.fireAuthHelper.checkUser();
     Timer(
       Duration(seconds: 3),
-          () => Get.offAllNamed('signIn'),
+          () => Get.offAllNamed(isLogin==false?'signIn':'dash'),
     );
   }
   @override
