@@ -87,7 +87,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           FireAuthHelper.fireAuthHelper.guestLogin();
                           Get.offAllNamed('profile');
                         },
-                          child: socialContainer("assets/img/apple-logo.png")),
+                          child: socialContainer("assets/img/profile-user.png")),
                       socialContainer("assets/img/facebook.png"),
                     ],
                   ),
@@ -146,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.black, width: 1),
+        border: Border.all(color: Colors.grey, width: 1),
       ),
       child: Image.asset(
         path,

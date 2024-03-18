@@ -8,6 +8,7 @@ import 'package:chat_firebase_miner/utils/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -26,7 +27,7 @@ class _SettingScreenState extends State<SettingScreen> {
         appBar: AppBar(
           title: Text(
             setting,
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.robotoSlab(color: Colors.white)
           ),
           centerTitle: true,
           backgroundColor: blue,

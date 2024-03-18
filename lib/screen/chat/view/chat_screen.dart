@@ -7,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -25,6 +27,15 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: blue,
+          actions: [
+            Icon(Icons.videocam_outlined,color: Colors.white,),
+            SizedBox(width: 10,),
+            IconButton(onPressed: () async {
+              Uri uri=Uri.parse("tel: +91 ${profileModel.mobile}");
+              await launchUrl(uri);
+            }, icon: Icon(Icons.call_outlined,color: Colors.white,),),
+            SizedBox(width: 10,),
+          ],
           leading: profileModel.image != null
               ? CircleAvatar(
                   radius: 30,
@@ -36,7 +47,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     "${profileModel.name!.substring(0, 1)}",
                   ),
                 ),
-          title: Text("${profileModel.name}",style: TextStyle(color: Colors.white),),
+          title: Text("${profileModel.name}",style: GoogleFonts.robotoSlab(color: Colors.white)),
           centerTitle: true,
         ),
         body: Stack(
@@ -169,6 +180,10 @@ class _ChatScreenState extends State<ChatScreen> {
                           controller: txtMsg,
                           textAlignVertical: TextAlignVertical.top,
                           decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.emoji_emotions_outlined),
+                            labelText: "Messages",
+                            suffixIcon:
+                                Icon(Icons.attach_file),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),

@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -20,12 +21,15 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           contact,
-          style: TextStyle(color: Colors.white),
+          style: GoogleFonts.robotoSlab(color: Colors.white)
         ),
         centerTitle: true,
         backgroundColor: blue,
+        actions: [
+          Icon(Icons.more_vert)
+        ],
       ),
       body: StreamBuilder(
         stream: FireDbHelper.fireDbHelper.getAllContact(),

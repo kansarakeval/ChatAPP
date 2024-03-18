@@ -27,7 +27,6 @@ Future<void> main() async {
         debugShowCheckedModeBanner: false,
         theme: settingController.islight.value?lightTheme:darkTheme,
         routes: app_routes,
-        initialRoute: 'intro',
       ),
     ),
   );

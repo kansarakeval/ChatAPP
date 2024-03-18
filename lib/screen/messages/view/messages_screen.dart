@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
@@ -15,8 +16,8 @@ class MessageScreen extends StatefulWidget {
   State<MessageScreen> createState() => _MessageScreenState();
 }
 
-class _MessageScreenState extends State<MessageScreen> with WidgetsBindingObserver{
-
+class _MessageScreenState extends State<MessageScreen>
+    with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -39,12 +40,14 @@ class _MessageScreenState extends State<MessageScreen> with WidgetsBindingObserv
   Future<void> getProfile() async {
     await FireDbHelper.fireDbHelper.getProfile();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: blue,
-        title: const Text("Messages",style: TextStyle(color: Colors.white),),
+        title: Text("Messages",
+            style: GoogleFonts.robotoSlab(color: Colors.white)),
         centerTitle: true,
       ),
       body: StreamBuilder(
@@ -105,7 +108,7 @@ class _MessageScreenState extends State<MessageScreen> with WidgetsBindingObserv
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    gradient: LinearGradient(colors: [Colors.white24,Colors.black12,]),
+                      color: Colors.white12
                   ),
                   child: ListTile(
                     onTap: () {
@@ -113,18 +116,24 @@ class _MessageScreenState extends State<MessageScreen> with WidgetsBindingObserv
                     },
                     leading: chatConact[index].image != null
                         ? CircleAvatar(
-                      radius: 30,
-                      backgroundImage:
-                      NetworkImage("${chatConact[index].image}"),
-                    )
+                            radius: 30,
+                            backgroundImage:
+                                NetworkImage("${chatConact[index].image}"),
+                          )
                         : CircleAvatar(
-                      radius: 30,
-                      child: Text(
-                        "${chatConact[index].name!.substring(0, 1)}",
-                      ),
+                            radius: 30,
+                            child: Text(
+                              "${chatConact[index].name!.substring(0, 1)}",
+                            ),
+                          ),
+                    title: Text(
+                      "${chatConact[index].name}",
+                      style: txtBold18,
                     ),
-                    title: Text("${chatConact[index].name}",style: txtBold18,),
-                    subtitle: Text("${chatConact[index].mobile}",style: txtBook16,),
+                    subtitle: Text(
+                      "${chatConact[index].mobile}",
+                      style: txtBook16,
+                    ),
                   ),
                 );
               },
