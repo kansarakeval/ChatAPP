@@ -19,6 +19,7 @@ Future<void> main() async {
       NotificationServices.services.firebaseMessagingBackgroundHandler);
 
   NotificationServices.services.initNotification();
+  //theme
   SettingController settingController=Get.put(SettingController());
   settingController.changeTheme();
   runApp(

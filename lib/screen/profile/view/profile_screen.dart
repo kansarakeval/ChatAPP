@@ -143,8 +143,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               notificationToken:
                               NotificationServices.services.token);
                           FireDbHelper.fireDbHelper.addProfileData(p1);
-                          controller.imagePath.value == null;
                           Get.offAllNamed('dash');
+                          controller.imagePath.value == null;
                         },
                         child: const Text("Save",style: TextStyle(color: Colors.white),),style: ButtonStyle(backgroundColor: MaterialStateProperty.all(blue),),
                       ),
