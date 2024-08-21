@@ -1,19 +1,17 @@
-# chat_firebase_miner
+# Chat APP
+
+chat_firebase_miner
 
 A new Flutter project.
 
 ## Getting Started
+- Firebase
+- Login
+- Registration
+- Logout
+- Notification
+- profile
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 <p>
   <img src="https://github.com/kansarakeval/chat_firebase_miner/assets/119046853/25cd6bf7-b060-4555-ba28-e765bb67a672" hight="450" width="180">
   <img src="https://github.com/kansarakeval/chat_firebase_miner/assets/119046853/745feab1-3529-4146-8f95-a5930d236176" hight="450" width="180">
